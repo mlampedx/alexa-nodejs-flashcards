@@ -1,0 +1,23 @@
+{
+  "name": "alexa-nodejs-flashcards",
+  "version": "0.0.1",
+  "description": "Node.js flashcards for Amazon Alexa.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlampedx/alexa-nodejs-flashcards.git"
+  },
+  "keywords": [
+    "Alexa",
+    "Node.js"
+  ],
+  "author": "Michael Lampe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mlampedx/alexa-nodejs-flashcards/issues"
+  },
+  "homepage": "https://github.com/mlampedx/alexa-nodejs-flashcards#readme"
+}
