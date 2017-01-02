@@ -4,7 +4,7 @@ function LinkedList() {
   this.length = 0;
 }
 
-function Node(key, question, answer, correctAnswers = 0, wrongAnswers = 0) {
+function Node(key, question, answer, correctAnswers, wrongAnswers) {
   this.key = key;
   this.question = question;
   this.answer = answer;
@@ -13,7 +13,8 @@ function Node(key, question, answer, correctAnswers = 0, wrongAnswers = 0) {
   this.next = null;
 }
 
-LinkedList.prototype.add = function(key = this.length, question, answer, correctAnswers, wrongAnswers) {
+LinkedList.prototype.add = function(node) {
+  const { key = this.length, question, answer, correctAnswers = 0, wrongAnswers = 0 } = node;
   const nodeToAdd = new Node(key, question, answer, correctAnswers, wrongAnswers);
   if (!this.head && !this.tail) {
     this.tail = this.head = nodeToAdd;
@@ -42,6 +43,12 @@ LinkedList.prototype.remove = function(key) {
       this.length = 0;
       return nodeToRemove;
     } else { return false; }
+  }
+  else if (this.head.key === key) {
+    const nodeToRemove = this.head;
+    this.head = this.head.next;
+    this.length -= 1;
+    return nodeToRemove;
   }
   else {
     let prevNode;
@@ -96,12 +103,12 @@ LinkedList.prototype.merge = function(l1, l2) {
   const mergedLinkedList = new LinkedList();
   const l1Nodes = [];
   const l2Nodes = [];
-  let curL1Node = this.head;
+  let curL1Node = l1.head;
   while (curL1Node !== null) {
     l1Nodes.push(curL1Node);
     curL1Node = curL1Node.next;
   }
-  let curL2Node = this.head;
+  let curL2Node = l2.head;
   while (curL2Node !== null) {
     curL2Node.key += l1.length;
     l2Nodes.push(curL2Node);
@@ -109,6 +116,7 @@ LinkedList.prototype.merge = function(l1, l2) {
   }
   mergedLinkedList.addAll(l1Nodes);
   mergedLinkedList.addAll(l2Nodes);
+  console.log('mergedLinkedList', mergedLinkedList)
   return mergedLinkedList;
 }
 
